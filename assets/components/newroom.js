@@ -11,7 +11,7 @@ export default function Newroom({navigation}) {
           room: room,
       }
   
-      fetch('http://c89a1f9adbeb.ngrok.io/chat', {
+      fetch('https://chatapp-rn-backend.herokuapp.com/chat', {
           method: 'POST',
           headers:{
               'Content-Type':'application/json'
@@ -24,7 +24,7 @@ export default function Newroom({navigation}) {
                 navigation.navigate('Chatpage', data)
               }
               else{
-                navigation.push('Newroom')
+                navigation.navigate('Newroom')
               }
               console.log(data)
           })

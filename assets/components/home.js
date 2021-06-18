@@ -14,7 +14,7 @@ export default function Home({navigation}){
         key: key,
     }
 
-    fetch('http://c89a1f9adbeb.ngrok.io/chat', {
+    fetch('https://chatapp-rn-backend.herokuapp.com/chat', {
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
