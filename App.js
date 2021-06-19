@@ -25,7 +25,7 @@ function App() {
       initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen options={{title:"New Room"}} name="Newroom" component={Newroom} />
-        <Stack.Screen options={{title:"Chat Page"}} name="Chatpage" component={Chatpage} />
+        <Stack.Screen options={({ route }) => ({ title: route.params.chatRoom+" Chatroom" })} name="Chatpage" component={Chatpage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

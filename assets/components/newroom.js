@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { StyleSheet, Button, TextInput, Text, View } from "react-native";
+import { Button, TextInput, Text, View } from "react-native";
 import styles from "../styles/styles"
 
 export default function Newroom({navigation}) {
@@ -10,6 +10,10 @@ export default function Newroom({navigation}) {
       var body = {
           user: user,
           room: room,
+      }
+      if(user==="" || room==="") {
+        alert("please fill all the fields")
+        return;
       }
   
       fetch('https://chatapp-rn-backend.herokuapp.com/chat', {
@@ -30,7 +34,10 @@ export default function Newroom({navigation}) {
               }
               console.log(data)
           })
-          .catch((err) => console.log('Error: ' + err))
+          .catch((err) => {
+            alert("Error: "+err)
+            console.log('Error: ' + err)
+          })
   }
   
     return (

@@ -14,13 +14,18 @@ export default function Home({navigation}){
         key: key,
     }
 
+    if(user==="" || room===""|| key==="") {
+      alert("please fill all the fields")
+      return;
+    }
+
     fetch('https://chatapp-rn-backend.herokuapp.com/chat', {
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
         },
         body: JSON.stringify(body),
-    })
+        })
         .then((response) => response.json())
         .then((data) => {
           if(data.valid===true){
@@ -28,12 +33,15 @@ export default function Home({navigation}){
           }
           else{
             alert("Invalid credentials")
-            navigation.push('Home')
+            navigation.navigate('Home')
           }
           console.log(data)
         })
-        .catch((err) => console.log('Error: ' + err))
-}
+        .catch((err) => {
+          alert("Error: " + err)
+          console.log('Error: ' + err)
+        })
+    }
 
   return (
     <>

@@ -41,8 +41,17 @@ const styles = StyleSheet.create({
       backgroundColor:"#32a88d",
       fontWeight:"600",
       justifyContent:"center",
-      height:50,
-      fontSize:200
+      height:40,
+      fontSize:200,
+    
+    },
+    left:{
+      alignItems:"center",
+      backgroundColor:"#cf3450",
+      fontWeight:"600",
+      justifyContent:"center",
+      height:40,
+      fontSize:200,
     
     }
   });
