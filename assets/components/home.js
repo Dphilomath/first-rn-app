@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { StyleSheet, Button, TextInput, Text, View } from "react-native";
+import styles from "../styles/styles"
 
 export default function Home({navigation}){
   const [user, setUser] = useState("");
-  const [room, setRoom] = useState("");
+  const [room, setRoom] = useState("");   
   const [key, setKey] = useState("");
 
   const handleSubmit = (e) => {
@@ -27,6 +27,7 @@ export default function Home({navigation}){
             navigation.navigate('Chatpage', data)
           }
           else{
+            alert("Invalid credentials")
             navigation.push('Home')
           }
           console.log(data)
@@ -67,27 +68,10 @@ export default function Home({navigation}){
           />
         </View>
         <View style={{flexDirection: "row",justifyContent: "space-around", width: "70%"}} >
-          <Button title="submit" onPress={handleSubmit} />
-          <Button title="new chatroom"  onPress={() => navigation.navigate('Newroom')}/>
+          <Button color="#847db0" style={styles.button} title="Join" onPress={handleSubmit} />
+          <Button color="#847db0" style={styles.button} title="new chatroom"  onPress={() => navigation.navigate('Newroom')}/>
         </View>
       </View>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignContent: "space-around",
-    alignItems: "stretch",
-    backgroundColor: "#ddd",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  input: {
-    borderBottomWidth: 0.8,
-    height: 35,
-    textAlign: "center",
-    fontSize: 17,
-  },
-});

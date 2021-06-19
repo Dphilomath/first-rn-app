@@ -12,7 +12,17 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+       screenOptions={{
+        headerStyle: {
+          backgroundColor: '#847db0',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }} 
+      initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen options={{title:"New Room"}} name="Newroom" component={Newroom} />
         <Stack.Screen options={{title:"Chat Page"}} name="Chatpage" component={Chatpage} />

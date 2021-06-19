@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import { StyleSheet, Button, TextInput, Text, View } from "react-native";
+import styles from "../styles/styles"
 
 export default function Newroom({navigation}) {
     const [user, setUser] = useState("");
@@ -24,6 +25,7 @@ export default function Newroom({navigation}) {
                 navigation.navigate('Chatpage', data)
               }
               else{
+                alert(data.reason)
                 navigation.navigate('Newroom')
               }
               console.log(data)
@@ -54,27 +56,9 @@ export default function Newroom({navigation}) {
             />
           </View>
           <View style={{flexDirection: "row", justifyContent: "space-around", width: "70%"}} >
-            <Button title="submit" onPress={handleSubmit} />
+            <Button color="#847db0" style={styles.button} title="create" onPress={handleSubmit} />
           </View>
         </View>
       </>
     );
   }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignContent: "space-around",
-      alignItems: "stretch",
-      backgroundColor: "#ddd",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    input: {
-      borderBottomWidth: 0.8,
-      height: 35,
-      textAlign: "center",
-      fontSize: 17,
-    },
-  });
-  
