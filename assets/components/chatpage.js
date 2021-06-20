@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, TextInput, Text, View, FlatList, SafeAreaView } from "react-native";
+import { AutoScrollFlatList } from "react-native-autoscroll-flatlist";
 import './UserAgent'
 import io from 'socket.io-client';
 import styles from "../styles/styles"
+import Animated from "react-native-reanimated";
 
 
 function Chatpage({route, navigation}){
@@ -67,10 +69,17 @@ function Chatpage({route, navigation}){
 
                 <SafeAreaView>
                 <FlatList
+                    scrollToEnd={()=>true}
                     data={messages}
                     renderItem={renderItem}
                     keyExtractor={({index}) => index||Math.random().toString()}
                 />
+
+                {/* <AutoScrollFlatList
+                    data={messages}
+                    renderItem={renderItem}
+                    keyExtractor={({index}) => index||Math.random().toString()}
+                /> */}
                 </SafeAreaView>
             
             </View>
