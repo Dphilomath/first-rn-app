@@ -10,6 +10,7 @@ function Chatpage({route, navigation}){
     const [messages, setMessages] = useState([{msg:"entry"}]);
     const [input, setInput] = useState("")
     const [socket, setSocket] = useState(()=>io("ws://chatapp-rn-backend.herokuapp.com/"))
+    const [gref, setGref] = useState("")
 
     useEffect(()=>{
         socket.on("connect", ()=>{
@@ -38,6 +39,7 @@ function Chatpage({route, navigation}){
         setInput("")
     }
     const renderItem = ( ({item})=>{
+        
         if(item.msg==="entry") return;
         if(item.msg === "welcome"){
          return(
@@ -59,14 +61,20 @@ function Chatpage({route, navigation}){
         )
     })
 
+ 
+
     return(
         <View style={{flex:1, margin:"2%"}}>
             {/* <Text style={{fontSize:30}}>Welcome to {chatRoom}, {user}</Text> */}
             <Text style={{flexDirection:"row", alignSelf:"flex-end", flex:0.04, alignContent:"center", fontSize:17}}>Key: <Text onPress={()=>styles.key={display:"flex"}}>{key}</Text></Text>
-            <View style={{flex:0.88}}>
-
-                <SafeAreaView>
-                <FlatList
+            {/* <View style={{flex:0.88}}> */}
+            <View style={styles.messageContainer}>
+            
+                <SafeAreaView  >
+                <FlatList     
+                    ref={(ref) => {setGref(ref)}}
+                    onContentSizeChange={() => gref.scrollToEnd({animated: true})}
+                    onLayout={() => gref.scrollToEnd({animated: true})}                
                     data={messages}
                     renderItem={renderItem}
                     keyExtractor={({index}) => index||Math.random().toString()}
@@ -75,7 +83,7 @@ function Chatpage({route, navigation}){
             
             </View>
             
-            <View style={{flexDirection:"row", flex:1, paddingBottom:10, justifyContent:"space-around", bottom:0, position:"absolute"}}>
+            <View style={styles.send}>
                 <TextInput style={{flex:1, borderWidth:1, borderRadius:5}} onChangeText={text=>setInput(text)} value = {input} />
                 <Button color="#847db0" style={styles.button} title="Send" onPress = {handleSubmit}/>
             </View>

@@ -62,6 +62,15 @@ const styles = StyleSheet.create({
       width:"70%",
       alignItems:"center",
       justifyContent:"center"
+    },
+    send:{
+      flexDirection:"row",
+      flex:1,
+      paddingBottom:10,
+      justifyContent:"space-around",
+      bottom:0,
+      position:"absolute",
+      width:"100%"
     }
   });
 
