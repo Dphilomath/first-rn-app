@@ -49,12 +49,12 @@ export default function Home({navigation}){
             setLoading(false)
             navigation.navigate('Home')
           }
-          console.log(data)
+          // console.log(data)
         })
         .catch((err) => {
           setLoading(false)
           alert("Error: " + err)
-          console.log('Error: ' + err)
+          // console.log('Error: ' + err)
         })
     }
 
@@ -91,8 +91,8 @@ export default function Home({navigation}){
           />
         </View>
         <View style={{flexDirection: "row",justifyContent: "space-around", width: "70%"}} >
-          <Button color="#847db0" style={styles.button} title="Join" onPress={handleSubmit} />
-          <Button color="#847db0" style={styles.button} title="new chatroom"  onPress={() => navigation.navigate('Newroom')}/>
+          <Button disabled={loading} color="#847db0" style={styles.button} title="Join" onPress={handleSubmit} />
+          <Button disabled={loading} color="#847db0" style={styles.button} title="new chatroom"  onPress={() => navigation.navigate('Newroom')}/>
         </View>
         {loadStatus()}
       </View>

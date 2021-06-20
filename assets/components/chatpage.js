@@ -60,7 +60,7 @@ function Chatpage({route, navigation}){
     })
 
     return(
-        <View style={{flex:1}}>
+        <View style={{flex:1, margin:"2%"}}>
             {/* <Text style={{fontSize:30}}>Welcome to {chatRoom}, {user}</Text> */}
             <Text style={{flexDirection:"row", alignSelf:"flex-end", flex:0.04, alignContent:"center", fontSize:17}}>Key: <Text onPress={()=>styles.key={display:"flex"}}>{key}</Text></Text>
             <View style={{flex:0.88}}>

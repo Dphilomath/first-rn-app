@@ -36,11 +36,11 @@ export default function Newroom({navigation}) {
                 alert(data.reason)
                 navigation.navigate('Newroom')
               }
-              console.log(data)
+              // console.log(data)
           })
           .catch((err) => {
             alert("Error: "+err)
-            console.log('Error: ' + err)
+            // console.log('Error: ' + err)
           })
   }
 
@@ -77,7 +77,7 @@ export default function Newroom({navigation}) {
             />
           </View>
           <View style={{flexDirection: "row", justifyContent: "space-around", width: "70%"}} >
-            <Button color="#847db0" style={styles.button} title="create" onPress={handleSubmit} />
+            <Button disabled={loading} color="#847db0" style={styles.button} title="create" onPress={handleSubmit} />
           </View>
           {loadStatus()}
         </View>

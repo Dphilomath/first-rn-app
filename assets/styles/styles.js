@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     left:{
       alignItems:"center",
-      backgroundColor:"#cf3450",
+      backgroundColor:"#c73528",
       fontWeight:"600",
       justifyContent:"center",
       height:40,
@@ -55,9 +55,13 @@ const styles = StyleSheet.create({
       borderRadius:10
     },
     notify:{
-      //.........
       fontSize:20,
       height:30,
+      backgroundColor:"#77c9c4",
+      opacity:0.5,
+      width:"70%",
+      alignItems:"center",
+      justifyContent:"center"
     }
   });
 
