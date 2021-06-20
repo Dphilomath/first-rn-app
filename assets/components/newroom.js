@@ -5,6 +5,7 @@ import styles from "../styles/styles"
 export default function Newroom({navigation}) {
     const [user, setUser] = useState("");
     const [room, setRoom] = useState("");
+    const [loading, setLoading] = useState(false)
   
     const handleSubmit = (e)=>{
       var body = {
@@ -15,7 +16,9 @@ export default function Newroom({navigation}) {
         alert("please fill all the fields")
         return;
       }
-  
+      
+      setLoading(true)
+
       fetch('https://chatapp-rn-backend.herokuapp.com/chat', {
           method: 'POST',
           headers:{
@@ -25,6 +28,7 @@ export default function Newroom({navigation}) {
       })
           .then((response) => response.json())
           .then((data) => {
+              setLoading(false)
               if(data.valid===true){
                 navigation.navigate('Chatpage', data)
               }
@@ -38,6 +42,16 @@ export default function Newroom({navigation}) {
             alert("Error: "+err)
             console.log('Error: ' + err)
           })
+  }
+
+  const loadStatus = ()=>{
+    if(loading===true){
+      return(
+        <View style={styles.notify}>
+          <Text>Please wait...</Text>
+        </View>
+      )
+    }
   }
   
     return (
@@ -65,6 +79,7 @@ export default function Newroom({navigation}) {
           <View style={{flexDirection: "row", justifyContent: "space-around", width: "70%"}} >
             <Button color="#847db0" style={styles.button} title="create" onPress={handleSubmit} />
           </View>
+          {loadStatus()}
         </View>
       </>
     );

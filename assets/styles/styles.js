@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         fontSize:20
     },
     self:{
-        alignSelf:"flex-start",
+        alignSelf:"flex-end",
         justifyContent:"center",
         backgroundColor:"#dadee6",
         borderRadius:10,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         backgroundColor:"#c8abc9",
         margin:5,
         padding:5,
-        alignSelf:"flex-end",
+        alignSelf:"flex-start",
         justifyContent:"center",
         borderRadius:10,
 
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
       fontWeight:"600",
       justifyContent:"center",
       height:40,
-      fontSize:200,
-    
+      opacity:0.5,
+      borderRadius:10
     },
     left:{
       alignItems:"center",
@@ -51,8 +51,13 @@ const styles = StyleSheet.create({
       fontWeight:"600",
       justifyContent:"center",
       height:40,
-      fontSize:200,
-    
+      opacity:0.5,
+      borderRadius:10
+    },
+    notify:{
+      //.........
+      fontSize:20,
+      height:30,
     }
   });
 

@@ -6,6 +6,18 @@ export default function Home({navigation}){
   const [user, setUser] = useState("");
   const [room, setRoom] = useState("");   
   const [key, setKey] = useState("");
+  const [loading, setLoading] = useState(false)
+
+
+  const loadStatus = ()=>{
+    if(loading===true){
+      return(
+        <View style={styles.notify}>
+          <Text>Please wait...</Text>
+        </View>
+      )
+    }
+  }
 
   const handleSubmit = (e) => {
     var body = {
@@ -18,6 +30,7 @@ export default function Home({navigation}){
       alert("please fill all the fields")
       return;
     }
+    setLoading(true)
 
     fetch('https://chatapp-rn-backend.herokuapp.com/chat', {
         method: 'POST',
@@ -33,11 +46,13 @@ export default function Home({navigation}){
           }
           else{
             alert("Invalid credentials")
+            setLoading(false)
             navigation.navigate('Home')
           }
           console.log(data)
         })
         .catch((err) => {
+          setLoading(false)
           alert("Error: " + err)
           console.log('Error: ' + err)
         })
@@ -79,6 +94,7 @@ export default function Home({navigation}){
           <Button color="#847db0" style={styles.button} title="Join" onPress={handleSubmit} />
           <Button color="#847db0" style={styles.button} title="new chatroom"  onPress={() => navigation.navigate('Newroom')}/>
         </View>
+        {loadStatus()}
       </View>
     </>
   );
