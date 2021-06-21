@@ -2,11 +2,17 @@ import {StyleSheet} from "react-native"
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignContent: "space-around",
-      alignItems: "stretch",
       backgroundColor: "#ddd",
+      justifyContent:"center",
+    },
+    card:{
+      flex:0.8,
       alignItems: "center",
       justifyContent: "center",
+      shadowColor:"black",
+      shadowOffset:{width:2, height:2},
+      shadowOpacity:1,
+      shadowRadius:5,
     },
     input: {
       borderBottomColor: "#5b6fe3",
@@ -59,9 +65,27 @@ const styles = StyleSheet.create({
       height:30,
       backgroundColor:"#77c9c4",
       opacity:0.5,
-      width:"70%",
+      width:"65%",
       alignItems:"center",
-      justifyContent:"center"
+      justifyContent:"center",
+      borderRadius:5,
+      margin:5
+    },
+    send:{
+      flexDirection:"row",
+      flex:1,
+      paddingBottom:10,
+      bottom:0,
+      position:"absolute",
+      width:"100%"
+    },
+    button:{
+      backgroundColor:"#847db0",
+      height:30,
+      justifyContent:"center",
+      alignItems:"center",
+      borderRadius:5,
+      padding:15
     }
   });
 

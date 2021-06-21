@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { Button, TextInput, Text, View } from "react-native";
+import { Button, TextInput, Text, View, TouchableOpacity } from "react-native";
 import styles from "../styles/styles"
 
 export default function Newroom({navigation}) {
@@ -39,6 +39,7 @@ export default function Newroom({navigation}) {
               // console.log(data)
           })
           .catch((err) => {
+            setLoading(false)
             alert("Error: "+err)
             // console.log('Error: ' + err)
           })
@@ -55,8 +56,8 @@ export default function Newroom({navigation}) {
   }
   
     return (
-      <>
-        <View style={styles.container}> 
+      <View style={styles.container}>
+        <View style={styles.card}> 
           <Text style={{ fontSize: 30 }}>Create a new Chatroom</Text>
           <View style={{ flexDirection: "column", width: "60%", paddingBottom: 10 }} >
             <TextInput
@@ -77,10 +78,14 @@ export default function Newroom({navigation}) {
             />
           </View>
           <View style={{flexDirection: "row", justifyContent: "space-around", width: "70%"}} >
-            <Button disabled={loading} color="#847db0" style={styles.button} title="create" onPress={handleSubmit} />
+            {/* <Button disabled={loading} color="#847db0" style={styles.button} title="create" onPress={handleSubmit} /> */}
+            <TouchableOpacity disabled={loading} style={styles.button} onPress={handleSubmit}>
+              <Text style={{fontSize:20, color:"#fff"}}>Create</Text>
+            </TouchableOpacity>
+
           </View>
           {loadStatus()}
         </View>
-      </>
+      </View>
     );
   }

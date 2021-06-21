@@ -1,9 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-
-import Newroom from './assets/components/newroom';
-import Home from './assets/components/home';
-import Chatpage from "./assets/components/chatpage"
+import React from 'react';
+import Newroom from './components/newroom';
+import Home from './components/home';
+import Chatpage from "./components/chatpage"
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
