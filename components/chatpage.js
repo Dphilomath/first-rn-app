@@ -35,8 +35,8 @@ function Chatpage({route, navigation}){
     const handleSubmit = () =>{
         // setMessages(messages => [...messages, input])
         if(input==="") return;
-        socket.emit("chat message", {msg:input, user:user, room:chatRoom})
         setInput("")
+        socket.emit("chat message", {msg:input, user:user, room:chatRoom})
     }
     const renderItem = ( ({item})=>{
         
@@ -55,7 +55,7 @@ function Chatpage({route, navigation}){
         )}
         else return (
             <View style={item.user===user?styles.self:styles.other} >
-                <Text style={{fontWeight:"bold"}}>{item.user}</Text>  
+                <Text style={{fontWeight:"bold", flexWrap:"wrap"}}>{item.user}</Text>  
                 <Text>{item.msg}</Text>
             </View>
         )
@@ -65,17 +65,18 @@ function Chatpage({route, navigation}){
 
     return(
         <View style={{flex:1, margin:"2%"}}>
-            {/* <Text style={{fontSize:30}}>Welcome to {chatRoom}, {user}</Text> */}
             <Text style={{flexDirection:"row", alignSelf:"flex-end", flex:0.04, alignContent:"center", fontSize:17}}>Key: <Text onPress={()=>styles.key={display:"flex"}}>{key}</Text></Text>
-            {/* <View style={{flex:0.88}}> */}
-            <View style={styles.messageContainer}>
-            
+            <View style={{flex:0.88}} >
                 <SafeAreaView  >
-                <FlatList     
-                    ref={(ref) => {setGref(ref)}}
+                <FlatList showsVerticalScrollIndicator={false}    
+                    ref={(list) => {setGref(list)}}
                     onContentSizeChange={() => gref.scrollToEnd({animated: true})}
-                    onLayout={() => gref.scrollToEnd({animated: true})}                
+                    onLayout={({layout}) => {
+                        gref.scrollToEnd({animated: true})}}
                     data={messages}
+                    getItemLayout={(data, index) => (
+                        {length: 62, offset: 62 * index, index}
+                      )}
                     renderItem={renderItem}
                     keyExtractor={({index}) => index||Math.random().toString()}
                 />

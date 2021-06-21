@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Button, TextInput, Text, View } from "react-native";
+import { StyleSheet, Button, TextInput, TouchableOpacity, Text, View } from "react-native";
 import styles from "../styles/styles"
 
 export default function Home({navigation}){
@@ -41,12 +41,12 @@ export default function Home({navigation}){
         })
         .then((response) => response.json())
         .then((data) => {
+          setLoading(false)
           if(data.valid===true){
             navigation.navigate('Chatpage', data)
           }
           else{
             alert("Invalid credentials")
-            setLoading(false)
             navigation.navigate('Home')
           }
           // console.log(data)
@@ -59,11 +59,11 @@ export default function Home({navigation}){
     }
 
   return (
-    <>
-      <View style={styles.container}> 
+    <View style={styles.container}>
+      <View style={styles.card}> 
         <Text style={{ fontSize: 30 }}>Join Chatroom</Text>
         <View
-          style={{ flexDirection: "column", width: "60%", paddingBottom: 10 }}
+          style={{ flexDirection: "column", width: "65%", paddingBottom: 10 }}
         >
           <TextInput
             style={styles.input}
@@ -90,12 +90,16 @@ export default function Home({navigation}){
             value={user}
           />
         </View>
-        <View style={{flexDirection: "row",justifyContent: "space-around", width: "70%"}} >
-          <Button disabled={loading} color="#847db0" style={styles.button} title="Join" onPress={handleSubmit} />
-          <Button disabled={loading} color="#847db0" style={styles.button} title="new chatroom"  onPress={() => navigation.navigate('Newroom')}/>
+        <View style={{flexDirection: "row", justifyContent: "space-around", width: "65%"}} >
+          <TouchableOpacity disabled={loading} style={styles.button} onPress={handleSubmit}>
+              <Text style={{fontSize:18, color:"#fff"}}>Join</Text>
+            </TouchableOpacity>
+            <TouchableOpacity disabled={loading} style={styles.button} onPress={()=>navigation.navigate('Newroom')}>
+              <Text style={{fontSize:18, color:"#fff"}}>New Chatroom</Text>
+            </TouchableOpacity>
         </View>
         {loadStatus()}
       </View>
-    </>
+    </View>
   );
 }
